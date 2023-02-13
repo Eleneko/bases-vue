@@ -8,19 +8,23 @@
     <!-- Vue tendrá control absoluto de este div -->
 
     <div id="myApp">
-        <h1> Hola Mundo </h1>
-        <p> {{quote}} </p>
-        <blockquote>-{{author}}</blockquote>
-        <button v-on:click="changeQuote">
-            Tocar al gato
-        </button>
-        <!-- Gracias a vue podemos visualizar expresiones de js, solo dentro de la aplicación, el div -->
-        <p>{{2+2}}</p>
+        <h1>Batman quotes</h1>
+        <small>{{newQuote}}</small>
 
+        <!-- v-on es para escuchar un evento, presionar una tecla en este caso -->
+        <input type="text" v-model="newQuote" v-on:keypress.enter="addQuote">
 
+        <hr>
+
+        <ul>
+            <!-- v-for es parecido a un ciclo for que duplicara segun la condicion que se diga -->
+            <li v-for="({quote, author},index) in quotes">
+                <!-- Suma 1 para no mostrar el 0 -->
+                <span>{{index + 1}} - {{quote}}</span>
+                <blockquote>-{{author}}</blockquote>
+            </li>
+        </ul>
     </div>
-
-    <p>{{2+2}}</p>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="app.js"></script>  
